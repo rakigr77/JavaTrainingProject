@@ -39,7 +39,9 @@ public class MenuItem {
 
     @Override
     public String toString() {
-        return "MenuItem [ID=" + itemID + ", Name=" + name + ", Price=$" + price + "]";
+        return "Item ID: " + itemID + ", Name: " + name + ", Price: $" + price;
     }
 }
+
+
 

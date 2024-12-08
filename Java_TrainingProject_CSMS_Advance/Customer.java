@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer {
     private String name;
     private int customerID;
@@ -39,14 +44,8 @@ public class Customer {
         return orderHistory;
     }
 
-    // Add an order to the customer's order history
+    // Add order to order history
     public void addOrder(Order order) {
         orderHistory.add(order);
     }
-
-    @Override
-    public String toString() {
-        return "Customer [ID=" + customerID + ", Name=" + name + "]";
-    }
 }
-

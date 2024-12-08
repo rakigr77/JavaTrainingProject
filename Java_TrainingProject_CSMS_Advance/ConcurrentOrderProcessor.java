@@ -1,23 +1,29 @@
 package Java_TrainingProject_CSMS_Advance;
 
-class ConcurrentOrderProcessor extends Thread {
-    private Order order;
+import java.util.LinkedList;
+import java.util.Queue;
 
-    public ConcurrentOrderProcessor(Order order) {
-        this.order = order;
+public class ConcurrentOrderProcessor {
+    private final Queue<Order> orderQueue = new LinkedList<>();
+    private final int MAX_CAPACITY = 10;
+
+    public synchronized void placeOrder(Order order) throws InterruptedException {
+        while (orderQueue.size() == MAX_CAPACITY) {
+            wait(); // Wait if the queue is full
+        }
+        orderQueue.add(order);
+        System.out.println("Order placed: " + order.getOrderID());
+        notifyAll(); // Notify consumers
     }
 
-    @Override
-    public void run() {
-        synchronized (order) {
-            try {
-                // Simulate order processing
-                System.out.println("Processing order " + order);
-                Thread.sleep(2000);
-                System.out.println("Order processed: " + order);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    public synchronized Order processOrder() throws InterruptedException {
+        while (orderQueue.isEmpty()) {
+            wait(); // Wait if the queue is empty
         }
+        Order order = orderQueue.poll();
+        notifyAll(); // Notify producers
+        System.out.println("Order processed: " + order.getOrderID());
+        return order;
     }
 }
+

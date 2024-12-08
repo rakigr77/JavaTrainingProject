@@ -3,7 +3,10 @@ package Java_TrainingProject_CSMS_Advance;
 import java.util.ArrayList;
 import java.util.List;
 
-import Java_Training_MidWeekProject_CSMS.menu.MenuItem;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,33 +22,44 @@ public class Order {
         this.orderID = orderID;
         this.customer = customer;
         this.items = new ArrayList<>();
-        this.totalAmount = 0;
+        this.totalAmount = 0.0;
     }
 
-    // Add an item to the order
+    // Add item to the order
     public void addItem(MenuItem item) {
         items.add(item);
-//        if (item instanceof SpecialtyItem) {
-//            totalAmount += ((SpecialtyItem) item).getDiscountedPrice();
-//        } else {
-            totalAmount += item.getPrice();
-       // }
+        totalAmount += item.getPrice();
     }
 
     // Calculate total amount
-    public double calculateTotalAmount() {
+    public double getTotalAmount() {
         return totalAmount;
     }
 
-    @Override
-    public String toString() {
-        return "Order ID: " + orderID + ", Customer: " + customer.getName() + ", Total: $" + totalAmount + ", Items: " + items;
+    // Display order details
+    public void displayOrderDetails() {
+        System.out.println("Order ID: " + orderID);
+        System.out.println("Customer: " + customer.getName());
+        System.out.println("Items:");
+        for (MenuItem item : items) {
+            System.out.println(item);
+        }
+        System.out.println("Total Amount: $" + totalAmount);
     }
 
-	public void addItem(Java_TrainingProject_CSMS_Advance.MenuItem item) {
+	public String getOrderID() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
+
+	public MenuItem getCustomer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getItems() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
-
-
